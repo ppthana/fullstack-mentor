@@ -74,7 +74,7 @@ test("upgrade updates a managed installation and keeps a backup", () => {
   main(["upgrade", "--dir", parent], {});
 
   const newMarker = JSON.parse(readFileSync(markerPath, "utf8"));
-  assert.equal(newMarker.packageVersion, "0.5.0");
+  assert.equal(newMarker.packageVersion, "0.6.0");
   assert.ok(newMarker.updatedAt);
   assert.equal(
     readdirSync(parent).some((name) =>
@@ -98,7 +98,7 @@ test("status reports the installed version and remove is an uninstall alias", ()
     console.log = originalLog;
   }
 
-  assert.equal(output.some((line) => line.includes("installed 0.5.0")), true);
+  assert.equal(output.some((line) => line.includes("installed 0.6.0")), true);
   assert.equal(existsSync(join(parent, "fullstack-mentor")), false);
 });
 

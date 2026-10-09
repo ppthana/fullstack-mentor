@@ -72,6 +72,8 @@ Create this only when the learner opts into ongoing tracking:
 - Available time:
 - Preferred pace:
 - Environment:
+- Course started:
+- Last reset:
 
 ## Current position
 - Phase:
@@ -95,11 +97,15 @@ Create this only when the learner opts into ongoing tracking:
 ## Active misconceptions or gaps
 -
 
+## Reset history
+| Date | Previous position | New starting lesson | Reason |
+|---|---|---|---|
+
 ## Next actions
 1.
 ```
 
-Keep entries concise. Append quiz attempts and update gate state; do not turn the file into a transcript or erase failed attempts.
+Keep entries concise. Append quiz attempts and update gate state; do not turn the file into a transcript or erase failed attempts. Keep the full curriculum checklist in `learning-plan.md` and per-session remarks in `session-log.md`; update both according to [workspace-workflow.md](workspace-workflow.md).
 
 ## Initial diagnostic
 

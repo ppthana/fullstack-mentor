@@ -83,4 +83,6 @@ After every attempt, record:
 - remediation target;
 - current and next lesson gate states.
 
+Also append the session result to `session-log.md`. Mark the lesson complete in `learning-plan.md` only for `PASS`; leave it unchecked for `NOT YET`, `in_progress`, and `quiz_pending`.
+
 Use stable IDs such as `P1-L01-values-and-types`. Do not overwrite earlier attempts; append concise records so progress remains auditable.

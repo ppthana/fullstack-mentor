@@ -4,7 +4,7 @@
 
 Every lesson combines theory, a runnable worked example, guided hands-on work in the learner's editor, an independent challenge, review from saved files and test output, and a mandatory file-based quiz. Quiz attempts and feedback remain in the project as evidence. The next lesson stays locked until the learner scores at least 80/100 and passes the practical Build and Debug requirements.
 
-For an ongoing course, the mentor creates a `fullstack-learning/` workspace containing lesson theory, starter code, tests, challenges, immutable quiz attempts, feedback, and progress. Quiz files are opened only after the lesson's practice has been reviewed.
+For an ongoing course, the mentor creates a `fullstack-learning/` workspace containing a complete curriculum checklist, per-session remarks, lesson theory, starter code, tests, challenges, immutable quiz attempts, feedback, and progress. A lesson is checked off only after its quiz passes, and quiz files are opened only after the lesson's practice has been reviewed.
 
 ## Install globally with npx
 

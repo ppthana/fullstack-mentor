@@ -1,6 +1,6 @@
 {
   "name": "fullstack-mentor",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Install a Thai-first full-stack mentoring Agent Skill for AI coding agents.",
   "type": "module",
   "bin": {

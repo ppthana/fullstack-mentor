@@ -9,7 +9,9 @@ Create the course root only after the learner opts into ongoing study:
 ```text
 fullstack-learning/
 ├── README.md
+├── learning-plan.md
 ├── progress.md
+├── session-log.md
 └── lessons/
     └── <lesson-id>-<short-slug>/
         ├── theory.md
@@ -24,7 +26,17 @@ fullstack-learning/
             └── feedback-01.md
 ```
 
-This is a pattern, not a requirement to create empty placeholders. Omit files that add no learning value, and use the ecosystem's normal conventions when they differ. `README.md` should contain the exact commands needed to run the current work. `progress.md` follows the template in [assessment.md](assessment.md).
+This is a pattern, not a requirement to create empty lesson placeholders. `README.md` contains the exact commands needed to run the current work. `learning-plan.md` lists the complete curriculum as a checklist, `progress.md` follows the template in [assessment.md](assessment.md), and `session-log.md` records concise evidence and remarks for every learning session.
+
+## Planning and tracking files
+
+Create the three tracking files before beginning the first lesson of an ongoing course:
+
+- `learning-plan.md`: show every stable lesson ID, title, phase, and current gate state. Mark a checkbox `[x]` only after that lesson's quiz is recorded as `PASS`; an unlocked, in-progress, or quiz-pending lesson remains unchecked. Keep the current lesson visibly labeled and record its pass date and score when complete.
+- `progress.md`: store the authoritative current position, quiz attempts, mastery evidence, gaps, artifacts, reset history, and next actions. Never erase failed attempts when a learner restarts; if prior progress exists, archive or preserve it and append the reset decision.
+- `session-log.md`: append one row per session with a stable session number, date, lesson ID, stage, outcome, evidence path, and a short remark. A session may end without a quiz or lesson pass; record that honestly.
+
+At the end of every session, update `session-log.md` and `progress.md`. Update the checklist only when a gate changes or the current lesson moves. These files must agree; `progress.md` is authoritative if there is a discrepancy.
 
 ## Lesson lifecycle
 
@@ -63,6 +75,8 @@ Use zero-padded immutable attempts such as `attempt-01`, `attempt-02`, and match
 ### 6. Review and record
 
 Inspect the saved attempt, run appropriate checks, ask a focused oral defense only when authorship or understanding is ambiguous, and write the score plus evidence to `feedback-NN.md`. Append the attempt to `progress.md` and update the current and next lesson gate states.
+
+When a quiz passes, mark that lesson `[x]` in `learning-plan.md`, record the date and score, unlock the next lesson, and append the session result to `session-log.md`. When it does not pass, leave the checklist unchecked and record the remediation target.
 
 Automated tests support the Build and Debug evidence but do not replace assessment of explanation, reasoning, maintainability, accessibility, security, or tradeoffs when those matter.
 

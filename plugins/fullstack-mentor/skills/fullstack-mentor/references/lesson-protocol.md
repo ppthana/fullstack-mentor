@@ -75,6 +75,8 @@ Avoid overwhelming the learner with unrelated polish. Identify one priority impr
 
 After the guided hands-on and independent challenge are reviewed, set the lesson to `quiz_pending`. Create a fresh quiz attempt as defined in [quiz-gates.md](quiz-gates.md) and [workspace-workflow.md](workspace-workflow.md). Record the preserved attempt, feedback, and gate state. The next lesson remains locked until the result is `PASS`.
 
+Before ending any session, append its lesson stage, outcome, evidence, and short remark to `session-log.md`. Update `progress.md`; update `learning-plan.md` only when the current lesson or gate state changes. Never check off a lesson merely because its lecture or hands-on work is complete.
+
 ## Recommended lesson response shape
 
 Use this as a flexible shape, not a mandatory verbose template:
