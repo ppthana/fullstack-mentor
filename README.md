@@ -28,6 +28,26 @@ codex plugin remove fullstack-mentor
 codex plugin add fullstack-mentor@ppthana
 ```
 
+## Install with another AI coding agent
+
+The teaching workflow itself is a portable Agent Skill and does not depend on Codex tools. The AI agent must support loading a folder containing `SKILL.md` plus its referenced files.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ppthana/fullstack-mentor.git
+```
+
+The portable skill bundle is located at:
+
+```text
+fullstack-mentor/plugins/fullstack-mentor/skills/fullstack-mentor/
+```
+
+Copy that entire folder—not only `SKILL.md`—into the user/global skills directory documented by your AI tool. Keeping the complete folder is required because the skill loads curriculum, assessment, lesson, and quiz rules from `references/`.
+
+If an AI product does not support Agent Skills, provide the entire bundle as project knowledge or custom instructions and ask it to follow `SKILL.md`. Automatic discovery and `$fullstack-mentor` invocation depend on the host product, so they cannot be guaranteed in a plain chat interface.
+
 ## Invoke the skill
 
 Explicit invocation:
