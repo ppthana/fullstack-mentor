@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "fullstack-mentor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adaptive Thai full-stack lessons with hands-on practice and mandatory quiz gates.",
   "author": {
     "name": "ppthana",
@@ -10,5 +10,24 @@
   "homepage": "https://github.com/ppthana/fullstack-mentor",
   "repository": "https://github.com/ppthana/fullstack-mentor",
   "license": "MIT",
-  "keywords": ["education", "fullstack", "react", "golang", "thai"]
+  "keywords": ["education", "fullstack", "react", "golang", "postgresql", "kubernetes", "thai"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Full-stack Mentor",
+        "shortDescription": "Full-stack learning in Thai",
+        "longDescription": "Thai-first full-stack mentoring from computer and programming fundamentals through React, Go, PostgreSQL, testing, deployment, DevOps, and Kubernetes. Each lesson includes hands-on work and a mandatory mastery quiz before the next lesson unlocks.",
+        "developerName": "ppthana",
+        "category": "Developer Tools",
+        "capabilities": ["Teach", "Review", "Assess"],
+        "defaultPrompt": [
+          "Use $fullstack-mentor to assess my level and begin my next lesson in Thai.",
+          "Use $fullstack-mentor to review my code and grade the current lesson quiz."
+        ],
+        "brandColor": "#2563EB",
+        "composerIcon": "./assets/composer-icon.svg",
+        "logo": "./assets/logo.svg"
+      }
+    }
+  }
 }

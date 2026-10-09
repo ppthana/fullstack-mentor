@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Full-stack Mentor</title>
+  <rect width="64" height="64" rx="14" fill="#2563EB"/>
+  <path d="M15 17h34v7H15zM15 29h24v7H15zM15 41h16v7H15z" fill="#fff"/>
+  <path d="M44 32v12h-6l9 9 9-9h-6V32z" fill="#BFDBFE"/>
+</svg>

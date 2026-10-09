@@ -1,6 +1,6 @@
 {
   "name": "fullstack-mentor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adaptive Thai full-stack lessons with hands-on practice and mandatory quiz gates.",
   "author": {
     "name": "ppthana"
@@ -8,11 +8,17 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Full-stack Mentor",
-    "shortDescription": "เรียน Full-stack พร้อมลงมือทำและสอบผ่านทีละบท",
-    "longDescription": "สอนตั้งแต่พื้นฐานการเขียนโปรแกรมไปจนถึง React, Go, PostgreSQL, testing และ production โดยมี lecture, hands-on และ quiz gate ที่ต้องผ่านก่อนขึ้นบทถัดไป",
+    "shortDescription": "Full-stack learning in Thai",
+    "longDescription": "Thai-first mentoring from programming fundamentals through React, Go, PostgreSQL, production engineering, DevOps, and Kubernetes, with hands-on work and mandatory quiz gates.",
     "developerName": "ppthana",
-    "category": "Productivity",
+    "category": "Developer Tools",
     "capabilities": ["Teach", "Review", "Assess"],
-    "defaultPrompt": "Use $fullstack-mentor to assess my current level and begin the first lesson in Thai."
+    "defaultPrompt": [
+      "Use $fullstack-mentor to assess my level and begin my next lesson in Thai.",
+      "Use $fullstack-mentor to review my code and grade the current lesson quiz."
+    ],
+    "brandColor": "#2563EB",
+    "composerIcon": "./assets/composer-icon.svg",
+    "logo": "./assets/logo.svg"
   }
 }

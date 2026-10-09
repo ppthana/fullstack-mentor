@@ -105,9 +105,14 @@ If the result is `NOT YET`, the skill keeps the next lesson locked, reteaches th
 7. PostgreSQL and data modeling
 8. React + Go + PostgreSQL integration
 9. Security, testing, Docker, CI/CD, deployment, and observability
-10. Portfolio and job-readiness projects
+10. DevOps, Kubernetes, rollout, scaling, and incident diagnosis
+11. Portfolio and job-readiness projects
 
 The curriculum advances by demonstrated mastery, not a fixed calendar.
+
+The default stack order is React + TypeScript → Go → PostgreSQL → full-stack integration → production engineering → Kubernetes. The mentor may adjust pacing from demonstrated evidence, but it never skips prerequisites or quiz gates.
+
+After the final readiness review, the mentor summarizes the learner's demonstrated strengths and gaps, then asks whether the learner wants to choose a specialization or have the mentor design the next path. Possible continuations include deeper frontend, backend, data, platform/SRE, security, quality engineering, or team engineering.
 
 ## Repository layout
 

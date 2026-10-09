@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Full-stack Mentor logo</title>
+  <desc id="desc">A blue rounded square with stacked code layers and a learning path.</desc>
+  <rect width="512" height="512" rx="112" fill="#2563EB"/>
+  <path d="M128 156h256v48H128zM128 232h176v48H128zM128 308h112v48H128z" fill="#fff"/>
+  <path d="M337 242v93h-45l68 69 68-69h-43v-93z" fill="#BFDBFE"/>
+</svg>

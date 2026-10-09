@@ -132,7 +132,23 @@ Hands-on artifacts:
 
 Exit evidence: learner can deploy safely, observe failure, explain basic security controls, and reproduce the system from documentation.
 
-## Phase 9 — Portfolio and job readiness
+## Phase 9 — DevOps and Kubernetes
+
+Prerequisite: Phase 8 exit evidence. Kubernetes is not the learner's first deployment tool; first require a working containerized deployment, health checks, configuration, observability, and rollback outside Kubernetes.
+
+Topics: Linux and networking for operators, DNS and TLS, Kubernetes architecture, declarative desired state, Pods, Deployments, Services, ConfigMaps, Secrets, probes, requests and limits, autoscaling concepts, disruption, Ingress/Gateway, persistent storage, managed-database tradeoffs, policy, rollout strategies, observability, and incident response.
+
+Hands-on sequence:
+
+1. Run the integrated application on a local Kubernetes cluster.
+2. Add safe configuration, probes, resource boundaries, and controlled rollout behavior.
+3. Expose the application, trace traffic, and diagnose a deliberately broken deployment.
+4. Choose whether PostgreSQL belongs inside or outside the cluster and defend the operational tradeoff.
+5. Automate deployment in CI and demonstrate rollout, observation, scaling, and rollback.
+
+Exit evidence: learner can explain reconciliation, inspect cluster state, diagnose common scheduling/network/configuration failures, and operate the application without treating Kubernetes YAML as magic.
+
+## Phase 10 — Portfolio and job readiness
 
 Build at least two credible projects:
 
@@ -143,6 +159,8 @@ For each project require a problem statement, user stories, architecture sketch,
 
 Practice explaining code, debugging an unfamiliar defect, reviewing a pull request, making a small change in an existing codebase, and discussing tradeoffs. Avoid puzzle-only preparation.
 
+After the readiness review passes, use [next-paths.md](next-paths.md). Let the learner choose a specialization or explicitly delegate that choice to the mentor; do not automatically extend the course without this decision point.
+
 ## Spiral review
 
 Revisit earlier skills inside later phases:
@@ -152,4 +170,3 @@ Revisit earlier skills inside later phases:
 - Accessibility remains part of every UI review.
 - SQL constraints reappear in API validation and concurrency cases.
 - Git, tests, debugging, and explanation are assessed in every project.
-
