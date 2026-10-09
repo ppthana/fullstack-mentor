@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "fullstack-mentor",
-  "version": "0.4.0",
-  "description": "Adaptive Thai full-stack lessons with hands-on practice and mandatory quiz gates.",
+  "version": "0.5.0",
+  "description": "Adaptive Thai full-stack lessons with editor-based practice and mandatory quiz gates.",
   "author": {
     "name": "ppthana",
     "url": "https://github.com/ppthana"
@@ -16,7 +16,7 @@
       "interface": {
         "displayName": "Full-stack Mentor",
         "shortDescription": "Full-stack learning in Thai",
-        "longDescription": "Thai-first full-stack mentoring from computer and programming fundamentals through React, Go, PostgreSQL, testing, deployment, DevOps, and Kubernetes. Each lesson includes hands-on work and a mandatory mastery quiz before the next lesson unlocks.",
+        "longDescription": "Thai-first full-stack mentoring from computer and programming fundamentals through React, Go, PostgreSQL, testing, deployment, DevOps, and Kubernetes. Each lesson teaches theory before editor-based hands-on work and a mandatory mastery quiz before the next lesson unlocks.",
         "developerName": "ppthana",
         "category": "Developer Tools",
         "capabilities": ["Teach", "Review", "Assess"],

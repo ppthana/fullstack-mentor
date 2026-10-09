@@ -41,12 +41,13 @@ Any missing condition is `NOT YET`. Never compensate for a failed critical condi
 
 ## Quiz delivery
 
-1. Show lesson ID, objectives, rules, point breakdown, acceptance criteria, and how to submit.
-2. Ask all quiz questions in one bounded set unless the learner needs accessibility accommodation.
-3. Do not coach during the scored attempt. Clarify ambiguous wording without steering toward an answer.
-4. Permit documentation lookup when the task models real work, but require the learner to disclose what they consulted. Do not allow copying a complete solution.
-5. Run or inspect code and tests when tools are available. Never grade code from the learner's claim alone.
-6. Return a score table, evidence for deductions, `PASS` or `NOT YET`, and the gate status.
+1. Open the quiz only after the lesson's guided hands-on and independent challenge have been reviewed. Follow [workspace-workflow.md](workspace-workflow.md) when the project is writable.
+2. Create a fresh, learner-visible attempt file with the lesson ID, objectives, rules, point breakdown, acceptance criteria, permitted references, and exact verification command. Do not include an answer key or a nearly complete implementation.
+3. Put all quiz questions in one bounded attempt unless the learner needs accessibility accommodation. The learner writes answers and code in the editor rather than relying on chat-only responses.
+4. Do not coach during the scored attempt. Clarify ambiguous wording without steering toward an answer.
+5. Permit documentation lookup when the task models real work, but require the learner to disclose what they consulted. Do not allow copying a complete solution.
+6. Inspect the saved attempt and run code and tests when tools are available. Never grade code from the learner's claim alone.
+7. Write a score table, evidence for deductions, `PASS` or `NOT YET`, remediation, and gate status to the matching feedback file as well as reporting it to the learner.
 
 ## Failure and retakes
 
@@ -57,6 +58,7 @@ When the result is `NOT YET`:
 - reteach those gaps with a different example;
 - give unscored targeted practice;
 - generate a fresh equivalent retake that measures the same objectives without reusing answers.
+- preserve the failed attempt and feedback; create the retake with the next attempt number rather than overwriting history.
 
 There is no punishment or fixed attempt limit. Do not lower the threshold after repeated attempts. If repeated failure suggests a missing prerequisite, temporarily return to that prerequisite for remediation while keeping the next curriculum lesson locked.
 

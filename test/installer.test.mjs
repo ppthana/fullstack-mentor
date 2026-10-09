@@ -27,6 +27,10 @@ test("default install copies the skill to shared, Claude, and Codex locations", 
     const skill = join(home, ...relative, "fullstack-mentor");
     assert.equal(existsSync(join(skill, "SKILL.md")), true);
     assert.equal(existsSync(join(skill, "references", "lesson-map.md")), true);
+    assert.equal(
+      existsSync(join(skill, "references", "workspace-workflow.md")),
+      true,
+    );
   }
 });
 
@@ -70,7 +74,7 @@ test("upgrade updates a managed installation and keeps a backup", () => {
   main(["upgrade", "--dir", parent], {});
 
   const newMarker = JSON.parse(readFileSync(markerPath, "utf8"));
-  assert.equal(newMarker.packageVersion, "0.4.0");
+  assert.equal(newMarker.packageVersion, "0.5.0");
   assert.ok(newMarker.updatedAt);
   assert.equal(
     readdirSync(parent).some((name) =>
@@ -94,7 +98,7 @@ test("status reports the installed version and remove is an uninstall alias", ()
     console.log = originalLog;
   }
 
-  assert.equal(output.some((line) => line.includes("installed 0.4.0")), true);
+  assert.equal(output.some((line) => line.includes("installed 0.5.0")), true);
   assert.equal(existsSync(join(parent, "fullstack-mentor")), false);
 });
 

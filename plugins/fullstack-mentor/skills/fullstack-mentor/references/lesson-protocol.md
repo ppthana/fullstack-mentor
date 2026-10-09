@@ -2,6 +2,8 @@
 
 Use this protocol for a teaching session. Scale the lesson to the learner's available time; do not cram every section when the learner needs repetition.
 
+For an ongoing course in a writable project, follow [workspace-workflow.md](workspace-workflow.md). The normal path is **theory → demonstration → guided file-based hands-on → review → independent challenge → review → file-based quiz**. Do not open the quiz merely because the theory was delivered.
+
 ## 1. Retrieve and orient
 
 - Ask one or two retrieval questions from prior learning, or a prediction question for the new topic.
@@ -11,6 +13,8 @@ Use this protocol for a teaching session. Scale the lesson to the learner's avai
 ## 2. Lecture in a small unit
 
 Explain one mental model with a concrete example and one counterexample. Define new terminology in plain Thai and retain the English term in parentheses. Keep code small enough to trace.
+
+Write the durable lesson objective, mental model, examples, and run commands to the lesson's `theory.md` before asking the learner to edit code. Present and discuss the theory first; the file supports the lesson rather than replacing instruction.
 
 Check understanding with a prediction or “why” question. Do not ask only “เข้าใจไหม?”
 
@@ -25,9 +29,11 @@ Think aloud while building or debugging a minimal example:
 - explain an error instead of hiding it;
 - refactor only after correctness is visible.
 
+When the workspace is writable, keep the runnable worked example in `demo.<ext>` and inspect its actual output.
+
 ## 4. Guided hands-on
 
-Give the learner a nearby task with checkpoints. Ask them to write or direct the next meaningful step. Review the result, not just the final output.
+Create a valid starter file and, when meaningful, an executable test file. Give the learner a nearby task with checkpoints and ask them to write the next meaningful step in their editor. Inspect the saved artifact and run its verification command when tools permit. Review the result, not just the final output. Do not silently edit learner-owned answers.
 
 Use this hint ladder:
 
@@ -51,6 +57,8 @@ Assign a small variation that cannot be solved by blind copying. Include:
 
 Do not provide the solution before the learner attempts it unless they request direct instruction.
 
+Create the challenge file only after guided practice is understood. Review and verify it before changing the lesson state to `quiz_pending`.
+
 ## 6. Review and explain-back
 
 Ask the learner to explain one decision and one failure mode. Inspect code or command output when available. Give feedback in this order:
@@ -65,7 +73,7 @@ Avoid overwhelming the learner with unrelated polish. Identify one priority impr
 
 ## 7. Close the loop
 
-Set the lesson to `quiz_pending` and run the mandatory quiz defined in [quiz-gates.md](quiz-gates.md). Record the attempt and gate state. The next lesson remains locked until the result is `PASS`.
+After the guided hands-on and independent challenge are reviewed, set the lesson to `quiz_pending`. Create a fresh quiz attempt as defined in [quiz-gates.md](quiz-gates.md) and [workspace-workflow.md](workspace-workflow.md). Record the preserved attempt, feedback, and gate state. The next lesson remains locked until the result is `PASS`.
 
 ## Recommended lesson response shape
 

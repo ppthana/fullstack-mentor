@@ -2,7 +2,9 @@
 
 `fullstack-mentor` is a portable, Thai-first Agent Skill that teaches programming from the foundations to job-ready full-stack development with React, TypeScript, Go, PostgreSQL, testing, deployment, and production practices. It is not tied to one model or vendor.
 
-Every lesson combines a short lecture, worked example, guided hands-on work, an independent challenge, and a mandatory quiz. The next lesson stays locked until the learner scores at least 80/100 and passes the practical Build and Debug requirements.
+Every lesson combines theory, a runnable worked example, guided hands-on work in the learner's editor, an independent challenge, review from saved files and test output, and a mandatory file-based quiz. Quiz attempts and feedback remain in the project as evidence. The next lesson stays locked until the learner scores at least 80/100 and passes the practical Build and Debug requirements.
+
+For an ongoing course, the mentor creates a `fullstack-learning/` workspace containing lesson theory, starter code, tests, challenges, immutable quiz attempts, feedback, and progress. Quiz files are opened only after the lesson's practice has been reviewed.
 
 ## Install globally with npx
 
@@ -109,6 +111,10 @@ Other useful prompts:
 
 ```text
 Use $fullstack-mentor to continue my course from fullstack-learning/progress.md.
+```
+
+```text
+Use $fullstack-mentor to teach the theory first, create the lesson files, and let me complete the hands-on work in my editor before opening the quiz.
 ```
 
 Compatible agents can also select the skill automatically when the request clearly asks for teaching or mentoring on this curriculum.

@@ -1,7 +1,7 @@
 {
   "name": "fullstack-mentor",
-  "version": "0.4.0",
-  "description": "Adaptive Thai full-stack lessons with hands-on practice and mandatory quiz gates.",
+  "version": "0.5.0",
+  "description": "Adaptive Thai full-stack lessons with editor-based practice and mandatory quiz gates.",
   "author": {
     "name": "ppthana"
   },
@@ -9,7 +9,7 @@
   "interface": {
     "displayName": "Full-stack Mentor",
     "shortDescription": "Full-stack learning in Thai",
-    "longDescription": "Thai-first mentoring from programming fundamentals through React, Go, PostgreSQL, production engineering, DevOps, and Kubernetes, with hands-on work and mandatory quiz gates.",
+    "longDescription": "Thai-first mentoring from programming fundamentals through React, Go, PostgreSQL, production engineering, DevOps, and Kubernetes, with theory-first editor practice and mandatory quiz gates.",
     "developerName": "ppthana",
     "category": "Developer Tools",
     "capabilities": ["Teach", "Review", "Assess"],
