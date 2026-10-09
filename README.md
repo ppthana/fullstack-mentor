@@ -1,10 +1,53 @@
 # Full-stack Mentor
 
-`fullstack-mentor` is a Thai-first Codex skill that teaches programming from the foundations to job-ready full-stack development with React, TypeScript, Go, PostgreSQL, testing, deployment, and production practices.
+`fullstack-mentor` is a portable, Thai-first Agent Skill that teaches programming from the foundations to job-ready full-stack development with React, TypeScript, Go, PostgreSQL, testing, deployment, and production practices. It is not tied to one model or vendor.
 
 Every lesson combines a short lecture, worked example, guided hands-on work, an independent challenge, and a mandatory quiz. The next lesson stays locked until the learner scores at least 80/100 and passes the practical Build and Debug requirements.
 
-## Install globally in Codex
+## Install globally with npx
+
+Install the skill for compatible AI coding agents on your machine:
+
+```bash
+npx --yes github:ppthana/fullstack-mentor install
+```
+
+The default command installs the same portable skill bundle into:
+
+- `~/.agents/skills/fullstack-mentor` for Cursor, Gemini CLI, and agents that support the shared Agent Skills directory;
+- `~/.claude/skills/fullstack-mentor` for Claude Code;
+- `~/.codex/skills/fullstack-mentor` for Codex.
+
+Install for only one known agent:
+
+```bash
+npx --yes github:ppthana/fullstack-mentor install --target claude
+npx --yes github:ppthana/fullstack-mentor install --target cursor
+npx --yes github:ppthana/fullstack-mentor install --target gemini
+npx --yes github:ppthana/fullstack-mentor install --target codex
+```
+
+For any other AI agent that supports `SKILL.md`, point the installer at the global skills directory documented by that agent:
+
+```bash
+npx --yes github:ppthana/fullstack-mentor install --dir /path/to/global/skills
+```
+
+Existing directories are never overwritten by default. Use `--force` to back up and replace an existing installation. To remove installations created by this CLI:
+
+```bash
+npx --yes github:ppthana/fullstack-mentor uninstall
+```
+
+Restart the AI agent or reload its skills after installation. Then ask it to use `fullstack-mentor`, for example:
+
+```text
+Use the fullstack-mentor skill to assess my level and begin my first lesson in Thai.
+```
+
+An AI product must support the Agent Skills `SKILL.md` format or allow a local instructions directory. A plain hosted chat that cannot load local files cannot discover a globally installed skill; upload the skill bundle as project knowledge in that product instead.
+
+## Install as a Codex plugin
 
 Add this GitHub repository as a marketplace:
 
@@ -28,9 +71,9 @@ codex plugin remove fullstack-mentor
 codex plugin add fullstack-mentor@ppthana
 ```
 
-## Install with another AI coding agent
+## Manual installation
 
-The teaching workflow itself is a portable Agent Skill and does not depend on Codex tools. The AI agent must support loading a folder containing `SKILL.md` plus its referenced files.
+The teaching workflow does not depend on Codex tools. The AI agent must support loading a folder containing `SKILL.md` plus its referenced files.
 
 Clone the repository:
 
@@ -70,7 +113,7 @@ Other useful prompts:
 Use $fullstack-mentor to continue my course from fullstack-learning/progress.md.
 ```
 
-Codex can also select the skill automatically when the request clearly asks for teaching or mentoring on this curriculum.
+Compatible agents can also select the skill automatically when the request clearly asks for teaching or mentoring on this curriculum.
 
 ## Quiz gate
 
@@ -117,6 +160,8 @@ After the final readiness review, the mentor summarizes the learner's demonstrat
 ## Repository layout
 
 ```text
+package.json
+cli/fullstack-mentor.mjs
 .agents/plugins/marketplace.json
 plugins/fullstack-mentor/
 ├── plugin.json

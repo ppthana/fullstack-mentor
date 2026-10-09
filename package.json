@@ -1,0 +1,41 @@
+{
+  "name": "fullstack-mentor",
+  "version": "0.3.0",
+  "description": "Install a Thai-first full-stack mentoring Agent Skill for AI coding agents.",
+  "type": "module",
+  "bin": {
+    "fullstack-mentor": "./cli/fullstack-mentor.mjs"
+  },
+  "files": [
+    "cli/",
+    "plugins/fullstack-mentor/skills/fullstack-mentor/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppthana/fullstack-mentor.git"
+  },
+  "homepage": "https://github.com/ppthana/fullstack-mentor#readme",
+  "bugs": {
+    "url": "https://github.com/ppthana/fullstack-mentor/issues"
+  },
+  "keywords": [
+    "agent-skills",
+    "ai",
+    "education",
+    "fullstack",
+    "react",
+    "golang",
+    "postgresql",
+    "kubernetes",
+    "thai"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
