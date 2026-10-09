@@ -33,10 +33,32 @@ For any other AI agent that supports `SKILL.md`, point the installer at the glob
 npx --yes github:ppthana/fullstack-mentor install --dir /path/to/global/skills
 ```
 
-Existing directories are never overwritten by default. Use `--force` to back up and replace an existing installation. To remove installations created by this CLI:
+Existing directories are never overwritten by default. Use `--force` to back up and replace an existing installation.
+
+## Manage the skill with npx
+
+The same vendor-neutral CLI handles the complete lifecycle for every target:
 
 ```bash
-npx --yes github:ppthana/fullstack-mentor uninstall
+# Add or install
+npx --yes github:ppthana/fullstack-mentor add
+
+# Check every default global location
+npx --yes github:ppthana/fullstack-mentor status
+
+# Download the latest bundle and update managed installations
+npx --yes github:ppthana/fullstack-mentor upgrade
+
+# Remove installations created by this CLI
+npx --yes github:ppthana/fullstack-mentor remove
+```
+
+The canonical command names `install`, `update`, `status`, and `uninstall` work too. Pass the same `--target` or `--dir` on every command when managing a specific AI or custom directory:
+
+```bash
+npx --yes github:ppthana/fullstack-mentor update --target claude
+npx --yes github:ppthana/fullstack-mentor status --dir /path/to/global/skills
+npx --yes github:ppthana/fullstack-mentor uninstall --dir /path/to/global/skills
 ```
 
 Restart the AI agent or reload its skills after installation. Then ask it to use `fullstack-mentor`, for example:
@@ -46,30 +68,6 @@ Use the fullstack-mentor skill to assess my level and begin my first lesson in T
 ```
 
 An AI product must support the Agent Skills `SKILL.md` format or allow a local instructions directory. A plain hosted chat that cannot load local files cannot discover a globally installed skill; upload the skill bundle as project knowledge in that product instead.
-
-## Install as a Codex plugin
-
-Add this GitHub repository as a marketplace:
-
-```bash
-codex plugin marketplace add ppthana/fullstack-mentor
-```
-
-Install the plugin:
-
-```bash
-codex plugin add fullstack-mentor@ppthana
-```
-
-Start a new Codex chat after installation. If the plugin is not visible in the desktop app immediately, restart the app once.
-
-To update later:
-
-```bash
-codex plugin marketplace upgrade ppthana
-codex plugin remove fullstack-mentor
-codex plugin add fullstack-mentor@ppthana
-```
 
 ## Manual installation
 

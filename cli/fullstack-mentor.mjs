@@ -24,12 +24,20 @@ const SKILL_SOURCE = join(
   SKILL_NAME,
 );
 const MARKER_NAME = ".fullstack-mentor-install.json";
+const PACKAGE_VERSION = JSON.parse(
+  readFileSync(join(PACKAGE_ROOT, "package.json"), "utf8"),
+).version;
 
 const HELP = `Full-stack Mentor Agent Skill installer
 
 Usage:
-  npx github:ppthana/fullstack-mentor install [options]
-  npx github:ppthana/fullstack-mentor uninstall [options]
+  npx github:ppthana/fullstack-mentor <command> [options]
+
+Commands:
+  install, add        Install the skill; refuse to overwrite by default
+  update, upgrade     Replace managed installations with the latest bundle
+  status              Show installation state and installed version
+  uninstall, remove   Remove installations created by this CLI
 
 Options:
   --target <name>  all, agents, codex, claude, cursor, or gemini
@@ -58,9 +66,18 @@ function parseArgs(argv) {
     help: false,
   };
 
-  const args = [...argv];
-  if (args[0] === "install" || args[0] === "uninstall") {
-    options.command = args.shift();
+const args = [...argv];
+  const commandAliases = {
+    install: "install",
+    add: "install",
+    update: "update",
+    upgrade: "update",
+    status: "status",
+    uninstall: "uninstall",
+    remove: "uninstall",
+  };
+  if (args[0] && Object.hasOwn(commandAliases, args[0])) {
+    options.command = commandAliases[args.shift()];
   }
 
   while (args.length > 0) {
@@ -124,6 +141,60 @@ function timestamp() {
   return new Date().toISOString().replaceAll(":", "-").replaceAll(".", "-");
 }
 
+function readMarker(destination) {
+  const marker = join(destination, MARKER_NAME);
+  if (!existsSync(marker)) {
+    return null;
+  }
+  try {
+    const metadata = JSON.parse(readFileSync(marker, "utf8"));
+    return metadata.name === SKILL_NAME ? metadata : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeMarker(destination, previous = null) {
+  const now = new Date().toISOString();
+  writeFileSync(
+    join(destination, MARKER_NAME),
+    `${JSON.stringify(
+      {
+        name: SKILL_NAME,
+        packageVersion: PACKAGE_VERSION,
+        source: "https://github.com/ppthana/fullstack-mentor",
+        installedAt: previous?.installedAt || now,
+        updatedAt: previous ? now : undefined,
+      },
+      null,
+      2,
+    )}\n`,
+  );
+}
+
+function copyWithBackup(destination, previous = null) {
+  mkdirSync(dirname(destination), { recursive: true });
+  let backup = null;
+  if (existsSync(destination)) {
+    backup = `${destination}.backup-${timestamp()}`;
+    renameSync(destination, backup);
+  }
+
+  try {
+    cpSync(SKILL_SOURCE, destination, { recursive: true });
+    writeMarker(destination, previous);
+  } catch (error) {
+    if (existsSync(destination)) {
+      rmSync(destination, { recursive: true, force: true });
+    }
+    if (backup) {
+      renameSync(backup, destination);
+    }
+    throw error;
+  }
+  return backup;
+}
+
 function install(destinations, options) {
   if (!existsSync(join(SKILL_SOURCE, "SKILL.md"))) {
     throw new Error(`Packaged skill is missing: ${SKILL_SOURCE}`);
@@ -142,26 +213,66 @@ function install(destinations, options) {
       continue;
     }
 
-    mkdirSync(dirname(destination), { recursive: true });
-    if (existsSync(destination)) {
-      const backup = `${destination}.backup-${timestamp()}`;
-      renameSync(destination, backup);
+    const backup = copyWithBackup(destination);
+    if (backup) {
       console.log(`Backed up existing skill: ${backup}`);
     }
-    cpSync(SKILL_SOURCE, destination, { recursive: true });
-    writeFileSync(
-      join(destination, MARKER_NAME),
-      `${JSON.stringify(
-        {
-          name: SKILL_NAME,
-          source: "https://github.com/ppthana/fullstack-mentor",
-          installedAt: new Date().toISOString(),
-        },
-        null,
-        2,
-      )}\n`,
+    console.log(`Installed ${SKILL_NAME} ${PACKAGE_VERSION}: ${destination}`);
+  }
+}
+
+function update(destinations, options) {
+  const unmanaged = destinations.filter(
+    (destination) => existsSync(destination) && !readMarker(destination),
+  );
+  if (unmanaged.length > 0) {
+    throw new Error(
+      `Refusing to update unmanaged directories:\n${unmanaged.map((path) => `  ${path}`).join("\n")}\nUse install --force if you intentionally want to replace them.`,
     );
-    console.log(`Installed ${SKILL_NAME}: ${destination}`);
+  }
+
+  const managed = destinations
+    .map((destination) => ({ destination, marker: readMarker(destination) }))
+    .filter(({ marker }) => marker);
+  if (managed.length === 0) {
+    throw new Error("No managed installation found. Run install first.");
+  }
+
+  for (const { destination, marker } of managed) {
+    if (marker.packageVersion === PACKAGE_VERSION && !options.force) {
+      console.log(
+        `Already current ${SKILL_NAME} ${PACKAGE_VERSION}: ${destination}`,
+      );
+      continue;
+    }
+    if (options.dryRun) {
+      console.log(
+        `[dry-run] update ${marker.packageVersion || "unknown"} -> ${PACKAGE_VERSION}: ${destination}`,
+      );
+      continue;
+    }
+    const backup = copyWithBackup(destination, marker);
+    console.log(`Backed up previous skill: ${backup}`);
+    console.log(
+      `Updated ${SKILL_NAME} ${marker.packageVersion || "unknown"} -> ${PACKAGE_VERSION}: ${destination}`,
+    );
+  }
+}
+
+function status(destinations) {
+  for (const destination of destinations) {
+    if (!existsSync(destination)) {
+      console.log(`not installed  ${destination}`);
+      continue;
+    }
+    const marker = readMarker(destination);
+    if (!marker) {
+      console.log(`unmanaged      ${destination}`);
+      continue;
+    }
+    console.log(
+      `installed ${marker.packageVersion || "unknown"}  ${destination}`,
+    );
   }
 }
 
@@ -169,7 +280,7 @@ function uninstall(destinations, options) {
   const unmanaged = destinations.filter(
     (destination) =>
       existsSync(destination) &&
-      !existsSync(join(destination, MARKER_NAME)),
+      !readMarker(destination),
   );
   if (unmanaged.length > 0) {
     throw new Error(
@@ -183,11 +294,6 @@ function uninstall(destinations, options) {
       continue;
     }
 
-    const marker = join(destination, MARKER_NAME);
-    const metadata = JSON.parse(readFileSync(marker, "utf8"));
-    if (metadata.name !== SKILL_NAME) {
-      throw new Error(`Invalid install marker: ${marker}`);
-    }
     if (options.dryRun) {
       console.log(`[dry-run] uninstall -> ${destination}`);
       continue;
@@ -207,6 +313,10 @@ export function main(argv = process.argv.slice(2), env = process.env) {
   const destinations = resolveDestinations(options, env);
   if (options.command === "install") {
     install(destinations, options);
+  } else if (options.command === "update") {
+    update(destinations, options);
+  } else if (options.command === "status") {
+    status(destinations);
   } else {
     uninstall(destinations, options);
   }

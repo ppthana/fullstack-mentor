@@ -1,5 +1,11 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -47,5 +53,69 @@ test("installer refuses to replace an existing directory without --force", () =>
   assert.throws(
     () => main(["install", "--dir", parent], {}),
     /Already installed/,
+  );
+});
+
+test("upgrade updates a managed installation and keeps a backup", () => {
+  const home = tempHome();
+  const parent = join(home, "custom-skills");
+  const skill = join(parent, "fullstack-mentor");
+  const markerPath = join(skill, ".fullstack-mentor-install.json");
+  main(["add", "--dir", parent], {});
+
+  const oldMarker = JSON.parse(readFileSync(markerPath, "utf8"));
+  oldMarker.packageVersion = "0.1.0";
+  writeFileSync(markerPath, `${JSON.stringify(oldMarker)}\n`);
+
+  main(["upgrade", "--dir", parent], {});
+
+  const newMarker = JSON.parse(readFileSync(markerPath, "utf8"));
+  assert.equal(newMarker.packageVersion, "0.4.0");
+  assert.ok(newMarker.updatedAt);
+  assert.equal(
+    readdirSync(parent).some((name) =>
+      name.startsWith("fullstack-mentor.backup-"),
+    ),
+    true,
+  );
+});
+
+test("status reports the installed version and remove is an uninstall alias", () => {
+  const home = tempHome();
+  const parent = join(home, "custom-skills");
+  const output = [];
+  const originalLog = console.log;
+  try {
+    console.log = (message) => output.push(message);
+    main(["install", "--dir", parent], {});
+    main(["status", "--dir", parent], {});
+    main(["remove", "--dir", parent], {});
+  } finally {
+    console.log = originalLog;
+  }
+
+  assert.equal(output.some((line) => line.includes("installed 0.4.0")), true);
+  assert.equal(existsSync(join(parent, "fullstack-mentor")), false);
+});
+
+test("upgrade is a no-op when the managed installation is current", () => {
+  const home = tempHome();
+  const parent = join(home, "custom-skills");
+  const output = [];
+  const originalLog = console.log;
+  try {
+    console.log = (message) => output.push(message);
+    main(["install", "--dir", parent], {});
+    main(["upgrade", "--dir", parent], {});
+  } finally {
+    console.log = originalLog;
+  }
+
+  assert.equal(output.some((line) => line.includes("Already current")), true);
+  assert.equal(
+    readdirSync(parent).some((name) =>
+      name.startsWith("fullstack-mentor.backup-"),
+    ),
+    false,
   );
 });
