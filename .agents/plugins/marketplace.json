@@ -1,0 +1,20 @@
+{
+  "name": "ppthana",
+  "interface": {
+    "displayName": "ppthana Skills"
+  },
+  "plugins": [
+    {
+      "name": "fullstack-mentor",
+      "source": {
+        "source": "local",
+        "path": "./plugins/fullstack-mentor"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

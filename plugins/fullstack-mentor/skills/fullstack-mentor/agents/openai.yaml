@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full-stack Mentor"
+  short_description: "เรียน Full-stack จากพื้นฐานสู่การทำงานจริง"
+  default_prompt: "Use $fullstack-mentor to assess my level and teach me the next full-stack lesson in Thai."

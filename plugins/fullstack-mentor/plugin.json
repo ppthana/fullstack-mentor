@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "fullstack-mentor",
+  "version": "0.1.0",
+  "description": "Adaptive Thai full-stack lessons with hands-on practice and mandatory quiz gates.",
+  "author": {
+    "name": "ppthana",
+    "url": "https://github.com/ppthana"
+  },
+  "homepage": "https://github.com/ppthana/fullstack-mentor",
+  "repository": "https://github.com/ppthana/fullstack-mentor",
+  "license": "MIT",
+  "keywords": ["education", "fullstack", "react", "golang", "thai"]
+}
